@@ -14,7 +14,52 @@
     <div class="col-md-3">{{num}}</div>
   </div>
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-2"></div>
+    <div class="col-md-3">String Interpolation from 
+                the values returned from Component Method</div>
+    <div class="col-md-3">{{someMethod()}}</div>
   </div>
+  <div class="row">
+      <div class="col-md-3">String Interpolation from 
+                  the values returned from Component Method 2</div>
+      <div class="col-md-3">{{getGreeting('Test','Test')}}</div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-3">String Interpolation from 
+          the values returned from Component Method 3</div>
+      <div class="col-md-3">Hey There .. {{getGreeting('Test','Test')}}</div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-3">String Interpolation used for manipulating stlye attributes</div>
+      <div class="col-md-3">
+      <span class={{myClass}}>Some Test Data</span>
+      </div>
+      <div class="col-md-3">
+        <img src={{imageSrc}} />
+      </div>
+  </div>
+  <h2>Don'ts of String Interpolation</h2>
+  <div class="row">
+      <div class="col-md-4">Do not assign any value to the property in String Interpolation</div>
+      <div class="col-md-3">
+      <!-- {{greetingMessage="Test"}} -->
+      </div>      
+  </div>
+
+  <div class="row">
+      <div class="col-md-4">Do not Create new objects in String Interpolation</div>
+      <div class="col-md-3">
+      <!-- {{new Product()}} -->
+      </div>      
+  </div>
+
+  <div class="row">
+      <div class="col-md-4">Do not chain of Expression in String Interpolation</div>
+      <div class="col-md-3">
+      <!-- {{greetingMessage,2+3}} -->
+      <!-- {{greetingMessage;2+3}} -->
+      </div>      
+  </div>
+
 </div>
