@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventBindingComponent {
   paraClass:string="";
+  OneWayData:string="";
+  TwoWayData:string="";
   onMouseEntered(){
     this.paraClass = "alert alert-success";
   }
@@ -24,6 +26,22 @@ export class EventBindingComponent {
 
   textChanged(data){
     console.log(data.target.value);
+  }
+
+  textChanged2(data){
+    this.OneWayData= data.target.value;
+  }
+
+  EditOneWayData(){
+    this.OneWayData = "Some Random Text";
+  }
+
+  EditTwoWayData(){
+    this.TwoWayData = "Some Random Text";
+  }
+
+  TwoWayDataChanged(d:string){
+   this.TwoWayData = d.toUpperCase();
   }
 
 }

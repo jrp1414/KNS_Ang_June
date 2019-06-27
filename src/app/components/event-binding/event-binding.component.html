@@ -4,3 +4,39 @@
 <p (mouseenter)="onMouseEntered()" (mouseleave)="onMouseLeft()" [class]="paraClass" >Writing some Random paragraph to show you the mouse related Events.
     Writing some Random paragraph to show you the mouse related Events.
     Writing some Random paragraph to show you the mouse related Events.</p>
+
+
+ <hr/>
+ 
+ <h2>One Way Binding... Trying to establish two way binding</h2>
+ <div class="row">
+     <div class="col-md-3">
+         <input type="text" class="form-control" (input)="textChanged2($event)" />
+     </div>
+     <div class="col-md-3">
+        {{OneWayData}}
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-primary" (click)="EditOneWayData()">Edit One Way Data</button>
+    </div>
+ </div>
+
+
+ <h2>Two Way Binding</h2>
+ <div class="row">
+     <div class="col-md-3">
+         <!-- <input type="text" class="form-control" [(ngModel)]="TwoWayData" /> -->
+         <input 
+                type="text" 
+                class="form-control" 
+                [ngModel]="TwoWayData"
+                (ngModelChange)="TwoWayDataChanged($event)"
+                 />
+     </div>
+     <div class="col-md-3">
+        {{TwoWayData}}
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-primary" (click)="EditTwoWayData()">Edit Two Way Data</button>
+    </div>
+ </div>
