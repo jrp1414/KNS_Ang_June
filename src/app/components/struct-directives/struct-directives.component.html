@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="row">
+    <div class="col-md-2">Name:</div>
+    <div class="col-md-2"><input class="form-control" type="text" [(ngModel)]="name" /></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">Address:</div>
+    <div class="col-md-2"><input class="form-control" type="text" [(ngModel)]="address" /></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">Mobile No:</div>
+    <div class="col-md-2"><input class="form-control" type="text" [(ngModel)]="mobileNo" /></div>
+  </div>
+  <div class="row">
+      <div class="col-md-2">Grade:</div>
+      <div class="col-md-2">
+        <select class="form-control" [(ngModel)]="grade">
+          <option>A</option>
+          <option>B</option>
+          <option>C</option>
+          <option>D</option>
+          <option>E</option>
+        </select>
+      </div>
+    </div>
+
+  <button class="btn btn-primary col-md-2" [disabled]="!(name.length>0 && address.length>0 && mobileNo.length>0)"
+    (click)="AddStudent()">Add Student</button>
+</div>
+<table class="table table-hover col-md-6">
+  <thead>
+    <tr>
+      <th>Sl No</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Mobile No</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students;let i=index">
+      <td>{{i+1}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.address}}</td>
+      <td>{{student.mobileNo}}</td>
+      <td [ngSwitch]="student.grade">
+        <span *ngSwitchCase="'A'">Very Good</span>
+        <span *ngSwitchCase="'B'">Good</span>
+        <span *ngSwitchCase="'C'">Average</span>
+        <span *ngSwitchCase="'D'">Poor</span>
+        <span *ngSwitchCase="'E'">Very Poor</span>
+        <span *ngSwitchDefault>NA</span>
+      </td>
+    </tr>
+  </tbody>
+</table>

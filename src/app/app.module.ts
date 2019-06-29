@@ -8,6 +8,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { StringInterpolationComponent } from './components/string-interpolation/string-interpolation.component';
 import { PropertyBindingComponent } from './components/property-binding/property-binding.component';
 import { EventBindingComponent } from './components/event-binding/event-binding.component';
+import { NgifComponent } from './components/ngif/ngif.component';
+import { StructDirectivesComponent } from './components/struct-directives/struct-directives.component';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +19,9 @@ import { EventBindingComponent } from './components/event-binding/event-binding.
     FooterComponent,
     StringInterpolationComponent,
     PropertyBindingComponent,
-    EventBindingComponent
+    EventBindingComponent,
+    NgifComponent,
+    StructDirectivesComponent
   ],
   imports: [
     BrowserModule,
