@@ -10,6 +10,7 @@ import { PropertyBindingComponent } from './components/property-binding/property
 import { EventBindingComponent } from './components/event-binding/event-binding.component';
 import { NgifComponent } from './components/ngif/ngif.component';
 import { StructDirectivesComponent } from './components/struct-directives/struct-directives.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { StructDirectivesComponent } from './components/struct-directives/struct
     PropertyBindingComponent,
     EventBindingComponent,
     NgifComponent,
-    StructDirectivesComponent
+    StructDirectivesComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,

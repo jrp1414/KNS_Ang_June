@@ -1,0 +1,33 @@
+.imageStyle1{
+    width: 75px;
+    height: 75px;
+    border:solid;
+    border-width: 3px;
+    border-color: aqua;
+}
+
+.veryGood{
+    background-color: green;
+    font-size: 18px;
+    font-weight: bold;
+}
+.good{
+    background-color: lawngreen;
+    font-size: 16px;
+    font-weight: bold;
+}
+.average{
+    background-color: yellow;
+    font-size: 14px;
+    font-weight: bold;
+}
+.poor{
+    background-color: red;
+    font-size: 12px;
+    font-weight: bold;
+}
+.veryBad{
+    background-color: maroon;
+    font-size: 10px;
+    font-weight: bold;
+}
