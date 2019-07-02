@@ -20,8 +20,8 @@
         <td>{{prod.productName}}</td>
         <td>{{prod.productCode}}</td>
         <td>{{prod.releaseDate}}</td>
-        <td>{{prod.description.descText}}</td>
-        <td>{{prod.description.mfdYear}}</td>
+        <td>{{prod.description?.descText}}</td>
+        <td>{{prod.description?.mfdYear}}</td>
         <td>{{prod.price}}</td>
         <!-- <td 
           [class.veryGood]="prod.starRating==5" 
@@ -32,12 +32,22 @@
           {{prod.starRating}}
         </td> -->
 
-        <td 
+        <!-- <td 
           [class.veryGood]="prod.starRating==5" 
           [class.good]="prod.starRating==4" 
           [class.average]="prod.starRating==3"
           [class.poor]="prod.starRating==2" 
           [class.veryBad]="prod.starRating==1">
+          {{prod.starRating}}
+        </td> -->
+        <!-- <td [ngClass]="{
+                        veryGood:prod.starRating==5,
+                        good:prod.starRating==4,
+                        average:prod.starRating==3,
+                        poor:prod.starRating==2,
+                        veryBad:prod.starRating==1  
+                      }"> -->
+        <td [ngClass]="getClasses(prod)">
           {{prod.starRating}}
         </td>
         <!-- <td><img [src]="prod.imageUrl" style="width: 50px; height:50px" /></td> -->
@@ -46,7 +56,7 @@
         <!-- <td><img [src]="prod.imageUrl" class="imageStyle1" /></td> -->
         <!-- <td><img [src]="prod.imageUrl" [ngStyle]="{width:imageWidth,height:imageHeight}" /></td> -->
         <td><img [src]="prod.imageUrl" [ngStyle]="getImageStyle()" /></td>
-        <td>{{prod.emailId}}</td>
+        <td class="veryGood">{{prod.emailId}}</td>
       </tr>
     </tbody>
   </table>

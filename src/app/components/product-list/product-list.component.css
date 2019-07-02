@@ -7,27 +7,34 @@
 }
 
 .veryGood{
-    background-color: green;
+    background-color: chartreuse;
     font-size: 18px;
-    font-weight: bold;
+    
 }
 .good{
-    background-color: lawngreen;
+    background-color: gold;
     font-size: 16px;
-    font-weight: bold;
+    
 }
 .average{
-    background-color: yellow;
+    background-color: blue;
     font-size: 14px;
-    font-weight: bold;
+    
 }
 .poor{
-    background-color: red;
-    font-size: 12px;
-    font-weight: bold;
+    background-color: pink;
+    
+    
 }
 .veryBad{
-    background-color: maroon;
+    background-color: aqua;
     font-size: 10px;
+    
+}
+
+
+.bold{
     font-weight: bold;
+    font-style: italic;
+    color: white;
 }
