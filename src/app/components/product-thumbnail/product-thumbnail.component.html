@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-body">
+    <h3>{{product.productName}}</h3>
+    <div class="row">
+      <div class="col-md-6">Product Code</div>
+      <div class="col-md-6">
+        {{product.productCode}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">Image</div>
+      <div class="col-md-6">
+        <img [src]="product.imageUrl" style="width: 50px;height:50px" />
+      </div>
+    </div>
+    <button class="btn btn-primary" (click)="SendDataToParent()">Send to Parent</button>
+  </div>
+</div>

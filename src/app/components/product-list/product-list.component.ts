@@ -11,7 +11,22 @@ export class ProductListComponent implements OnInit {
     imageHeight: string = "75px";
     // imageWidth:number=100;
     // imageHeight:number=100;
-    constructor() { }
+    constructor() {
+        // let prod2:Product=new Product();
+        // prod2.productId=11;
+        // prod2.productName="Test";
+        // prod2.description = new Description();
+        // prod2.description.descText="Test Description";
+        // prod2.description.mfdYear=2017;
+        // prod2.emailId="test@gmail.com";
+        // prod2.imageUrl="";
+        // prod2.price=25253.46;
+        // prod2.productCode="GDN-0011452";
+        // prod2.starRating=4;
+
+        let prod3=new Product(11,"Test Prod","GDN-00223",2542.52,4,"","test@outlook.com","19 March 2018",new Description("Test Description",2018));
+        this.products.push(prod3);
+    }
 
     ngOnInit() {
     }
@@ -21,18 +36,18 @@ export class ProductListComponent implements OnInit {
     }
 
     getClasses(prod) {
-        let result:any = {
-            veryGood:prod.starRating==5,
-            good:prod.starRating==4,
-            average:prod.starRating==3,
-            poor:prod.starRating==2,
-            veryBad:prod.starRating==1            
-          };
+        let result: any = {
+            veryGood: prod.starRating == 5,
+            good: prod.starRating == 4,
+            average: prod.starRating == 3,
+            poor: prod.starRating == 2,
+            veryBad: prod.starRating == 1
+        };
         if (prod.description) {
-            result.bold=prod.description.mfdYear>2015;
+            result.bold = prod.description.mfdYear > 2015;
         }
-          
-        return result; 
+
+        return result;
 
         // let result: string = "";
         // switch (prod.starRating) {
@@ -90,10 +105,15 @@ export class ProductListComponent implements OnInit {
     }
 
 
-    products: any[] = [
+    CatchingInParent(data: string) {
+        console.log(data);
+    }
+
+
+    products: Product[] = [
         {
             "productId": 1,
-            // "productName": "Leaf Rake",
+            "productName": "Leaf Rake",
             "productCode": "GDN-0011",
             "releaseDate": "March 19, 2016",
             "description": {
@@ -109,7 +129,7 @@ export class ProductListComponent implements OnInit {
             "productId": 2,
             "productName": "Garden Cart",
             "productCode": "GDN-0023",
-            "releaseDate": "March 18, 2016",
+            // "releaseDate": "March 18, 2016",
             // "description": {
             //     'descText': "15 gallon capacity rolling garden cart",
             //     "mfdYear": 2013
@@ -163,4 +183,59 @@ export class ProductListComponent implements OnInit {
         }
     ];
 
+
+
+
 }
+
+
+// export class Product {
+//     productId: number;
+//     productName: string;
+//     productCode: string;
+//     releaseDate?: string;
+//     description?: Description;
+//     price: number;
+//     starRating: number;
+//     imageUrl: string;
+//     emailId: string;
+// }
+
+// export class Product {
+//     constructor(prodId:number,prodName:string,prodCode:string,price:number,starRating:number,
+//                 imageUrl:string,emailId:string,releaseDate?:string,desc?:Description){
+//         this.productId = prodId;    
+//         this.productName = prodName;
+//         this.productCode = prodCode;
+//         this.price=price;
+//         this.starRating = starRating;
+//         this.releaseDate = releaseDate;
+//         this.description = desc;
+//     }
+//     productId: number;
+//     productName: string;
+//     productCode: string;
+//     releaseDate?: string;
+//     description?: Description;
+//     price: number;
+//     starRating: number;
+//     imageUrl: string;
+//     emailId: string;
+// }
+
+export class Product {
+    constructor(public productId:number,public productName:string,public productCode:string,
+                public price:number,public starRating:number,public imageUrl:string,
+                public emailId:string,public releaseDate?:string,public description?:Description){
+        
+    }
+    
+}
+
+export class Description {
+    constructor(public descText: string,public mfdYear: number){
+
+    }    
+}
+
+

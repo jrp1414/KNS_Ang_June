@@ -11,6 +11,7 @@ import { EventBindingComponent } from './components/event-binding/event-binding.
 import { NgifComponent } from './components/ngif/ngif.component';
 import { StructDirectivesComponent } from './components/struct-directives/struct-directives.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductThumbnailComponent } from './components/product-thumbnail/product-thumbnail.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
     EventBindingComponent,
     NgifComponent,
     StructDirectivesComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductThumbnailComponent
   ],
   imports: [
     BrowserModule,
