@@ -1,16 +1,27 @@
 <div class="container">
   <h2>Products List</h2>
+  <h4>{{dateTimeNow | date}}</h4>
+  <div #filterParent class="row">
+    <div class="col-md-1">Filter By:</div>
+    <div class="col-md-2">
+      <!-- <input type="text" class="form-control" [(ngModel)]="filterBy" name="filter" /> -->
+      <input type="text" class="form-control" #filter />
+    </div>
+    <div class="col-md-2">
+      <span class="alert-alert-info">
+          {{filterText}}
+      </span>
+    </div>
+  </div>
   <div class="row">
     <!-- <div class="col-md-4" *ngFor="let prod of products">
       <app-product-thumbnail [product]="prod"></app-product-thumbnail>
       <app-product-thumbnail [productDetails]="prod"></app-product-thumbnail>
-    </div> -->    
-    
-        <app-product-thumbnail 
-            *ngFor="let prod of products" 
-            [productDetails]="prod"
-            (pd)="CatchingInParent($event)"
-          ></app-product-thumbnail>
-      
-  </div>  
+    </div> -->
+
+    <app-product-thumbnail *ngFor="let prod of products" [productDetails]="prod" (pd)="CatchingInParent($event)">
+      <div class="alert alert-info">Some Additional Info</div>
+    </app-product-thumbnail>
+
+  </div>
 </div>

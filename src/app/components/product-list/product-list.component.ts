@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
     selector: 'app-product-list',
@@ -6,11 +6,15 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-
+    dateTimeNow:Date= new Date();
     imageWidth: string = "75px";
     imageHeight: string = "75px";
+    filterBy:string="";
+    @ViewChild("filter") filter:ElementRef;
+    @ViewChild("filterParent") filterParent:ElementRef;
     // imageWidth:number=100;
     // imageHeight:number=100;
+
     constructor() {
         // let prod2:Product=new Product();
         // prod2.productId=11;
@@ -104,9 +108,12 @@ export class ProductListComponent implements OnInit {
 
     }
 
-
+    filterText:string;
     CatchingInParent(data: string) {
         console.log(data);
+        console.log(this.filter.nativeElement.value);
+        this.filterText = this.filter.nativeElement.value;
+        console.log(this.filterParent);
     }
 
 
@@ -182,9 +189,6 @@ export class ProductListComponent implements OnInit {
             "emailId": "test@test.com"
         }
     ];
-
-
-
 
 }
 
