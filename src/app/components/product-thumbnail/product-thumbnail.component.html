@@ -1,10 +1,25 @@
 <div class="card">
   <div class="card-body">
-    <h3>{{product.productName | uppercase}}</h3>
+    <!-- <h3>{{product.productName | uppercase | lowercase}}</h3> -->
+    <h3>{{product.productName | uppercase | convertTo:'A':'@'}}</h3>
+    <!-- <h3>{{product.productName | uppercase }}</h3> -->
+    
     <div class="row">
       <div class="col-md-6">Product Code</div>
       <div class="col-md-6">
         {{product.productCode | lowercase}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">Product Price</div>
+      <div class="col-md-6">
+        {{product.price | currency :'EUR':true:'2.2' }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">Description</div>
+      <div class="col-md-6">
+        {{product.description?.descText | shorten }}
       </div>
     </div>
     <div class="row">
@@ -15,5 +30,6 @@
     </div>
     <button class="btn btn-primary" (click)="SendDataToParent()">Send to Parent</button>
     <ng-content></ng-content>
+
   </div>
 </div>

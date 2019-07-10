@@ -116,6 +116,23 @@ export class ProductListComponent implements OnInit {
         console.log(this.filterParent);
     }
 
+    ImpureData(){
+        this.products.push({
+            "productId": 13,
+            "productName": "Leaf Rake",
+            "productCode": "GDN-0015",
+            "releaseDate": "March 13, 2012",
+            "description": {
+                'descText': "New Prod",
+                "mfdYear": 2017
+            },
+            "price": 39.95485968596,
+            "starRating": 3,
+            "imageUrl": "https://www.harrodhorticultural.com/uploads/images/products/GGT-886_Sneeboer_Leaf_Rakes_1.jpg",
+            "emailId": "test@test.com"
+        })    
+    }
+
 
     products: Product[] = [
         {
@@ -124,7 +141,7 @@ export class ProductListComponent implements OnInit {
             "productCode": "GDN-0011",
             "releaseDate": "March 19, 2016",
             "description": {
-                'descText': "Leaf Rake Description",
+                'descText': "test",
                 "mfdYear": 2018
             },
             "price": 19.95485968596,
@@ -136,11 +153,11 @@ export class ProductListComponent implements OnInit {
             "productId": 2,
             "productName": "Garden Cart",
             "productCode": "GDN-0023",
-            // "releaseDate": "March 18, 2016",
-            // "description": {
-            //     'descText': "15 gallon capacity rolling garden cart",
-            //     "mfdYear": 2013
-            // },
+            "releaseDate": "March 18, 2016",
+            "description": {
+                'descText': "15 gallon capacity rolling garden cart",
+                "mfdYear": 2013
+            },
             "price": 0,
             "starRating": 4,
             "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png",

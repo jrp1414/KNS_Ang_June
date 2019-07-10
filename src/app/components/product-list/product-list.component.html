@@ -1,27 +1,51 @@
 <div class="container">
   <h2>Products List</h2>
-  <h4>{{dateTimeNow | date}}</h4>
+  <h4>{{dateTimeNow | date : 'MM/dd/yy-hh:mm:ss'}}</h4>
+  <!-- <div appHighlight>Basic Directive Example</div> -->
+  <div class="appHighlight">Basic Directive Example</div>
+  <!-- <div 
+    style="margin-top: 20px; margin-bottom:20px" 
+    appBetterHighlight
+    DefaultColor="aqua"
+    HighlightColor="yellow"
+    >Better Highlight Example</div> -->
+  <!-- <div style="margin-top: 20px; margin-bottom:20px" 
+       appBetterHighlight 
+       dc="aqua" hc="yellow">
+    Better Highlight Example</div> -->
+    <div style="margin-top: 20px; margin-bottom:20px" 
+       [appBetterHighlight]="'aqua'" 
+       hc="yellow">
+    Better Highlight Example</div>
   <div #filterParent class="row">
     <div class="col-md-1">Filter By:</div>
     <div class="col-md-2">
-      <!-- <input type="text" class="form-control" [(ngModel)]="filterBy" name="filter" /> -->
-      <input type="text" class="form-control" #filter />
+      <input type="text" class="form-control" [(ngModel)]="filterBy" name="filter" />
+      <!-- <input type="text" class="form-control"  #filter /> -->
     </div>
     <div class="col-md-2">
       <span class="alert-alert-info">
-          {{filterText}}
+        {{filterText}}
       </span>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-warning" (click)="ImpureData()">Test Impurity</button>
     </div>
   </div>
   <div class="row">
-    <!-- <div class="col-md-4" *ngFor="let prod of products">
-      <app-product-thumbnail [product]="prod"></app-product-thumbnail>
+    <div class="col-md-4" *ngFor="let prod of products | filterProduct: filterBy">
+      <!-- <app-product-thumbnail [product]="prod"></app-product-thumbnail> -->
+      <!-- <div class="alert alert-info">
+        {{prod | json}}
+      </div> -->
       <app-product-thumbnail [productDetails]="prod"></app-product-thumbnail>
-    </div> -->
+    </div>
 
-    <app-product-thumbnail *ngFor="let prod of products" [productDetails]="prod" (pd)="CatchingInParent($event)">
+    <!-- <app-product-thumbnail class="col-md-4" *ngFor="let prod of products" [productDetails]="prod" (pd)="CatchingInParent($event)">
       <div class="alert alert-info">Some Additional Info</div>
-    </app-product-thumbnail>
+    </app-product-thumbnail> -->
+
+
 
   </div>
 </div>

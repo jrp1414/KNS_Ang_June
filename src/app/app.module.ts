@@ -12,7 +12,11 @@ import { NgifComponent } from './components/ngif/ngif.component';
 import { StructDirectivesComponent } from './components/struct-directives/struct-directives.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductThumbnailComponent } from './components/product-thumbnail/product-thumbnail.component';
-
+import { ShortenPipe } from './pipes/shorten.pipe';
+import { ConvertToPipe } from './pipes/convert-to.pipe';
+import { FilterProductPipe } from './pipes/filter-product.pipe';
+import {BasicHighlightDirective} from './directives/basicHighlight.directive';
+import { BetterHighlightDirective } from './directives/better-highlight.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,12 @@ import { ProductThumbnailComponent } from './components/product-thumbnail/produc
     NgifComponent,
     StructDirectivesComponent,
     ProductListComponent,
-    ProductThumbnailComponent
+    ProductThumbnailComponent,
+    ShortenPipe,
+    ConvertToPipe,
+    FilterProductPipe,
+    BasicHighlightDirective,
+    BetterHighlightDirective
   ],
   imports: [
     BrowserModule,
