@@ -3,7 +3,7 @@
 <div class="jumbotron" *ngIf="age>=18;else child">
   <h1>Hello, Welcome to the Adulthood</h1>
 </div>
-<!-- <div class="card" *ngIf="age<18">
+<!-- <div class="card" *ngIf="age<18 else child">
   <h2>All the best Child</h2>
 </div> -->
 <ng-template #child>

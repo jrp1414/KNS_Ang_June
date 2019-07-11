@@ -13,9 +13,7 @@
        appBetterHighlight 
        dc="aqua" hc="yellow">
     Better Highlight Example</div> -->
-    <div style="margin-top: 20px; margin-bottom:20px" 
-       [appBetterHighlight]="'aqua'" 
-       hc="yellow">
+  <div style="margin-top: 20px; margin-bottom:20px" [appBetterHighlight]="'aqua'" hc="yellow">
     Better Highlight Example</div>
   <div #filterParent class="row">
     <div class="col-md-1">Filter By:</div>
@@ -24,9 +22,22 @@
       <!-- <input type="text" class="form-control"  #filter /> -->
     </div>
     <div class="col-md-2">
-      <span class="alert-alert-info">
-        {{filterText}}
+      <!-- <span *ngIf="filterBy.length>0" class="alert alert-info">
+            {{filterBy}}
+        </span> -->
+      <!-- <ng-template [ngIf]="filterBy.length>0">
+        <span class="alert alert-info">
+          {{filterBy}}
+        </span>
+      </ng-template> -->
+      <span *appUnless="filterBy.length<1" class="alert alert-info">
+        {{filterBy}}
       </span>
+      <!-- <ng-template [appUnless]="filterBy.length<1">
+        <span class="alert alert-info">
+          {{filterBy}}
+        </span>
+      </ng-template> -->
     </div>
     <div class="col-md-2">
       <button class="btn btn-warning" (click)="ImpureData()">Test Impurity</button>

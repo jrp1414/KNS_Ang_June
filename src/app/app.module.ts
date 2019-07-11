@@ -17,6 +17,7 @@ import { ConvertToPipe } from './pipes/convert-to.pipe';
 import { FilterProductPipe } from './pipes/filter-product.pipe';
 import {BasicHighlightDirective} from './directives/basicHighlight.directive';
 import { BetterHighlightDirective } from './directives/better-highlight.directive';
+import { UnlessDirective } from './directives/unless.directive';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BetterHighlightDirective } from './directives/better-highlight.directiv
     ConvertToPipe,
     FilterProductPipe,
     BasicHighlightDirective,
-    BetterHighlightDirective
+    BetterHighlightDirective,
+    UnlessDirective
   ],
   imports: [
     BrowserModule,
