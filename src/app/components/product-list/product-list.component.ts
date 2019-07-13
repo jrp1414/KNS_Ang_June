@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { LoggingService } from '../../services/logging.service';
 
 @Component({
     selector: 'app-product-list',
     templateUrl: './product-list.component.html',
-    styleUrls: ['./product-list.component.css']
+    styleUrls: ['./product-list.component.css'],
+    // providers:[LoggingService]
 })
 export class ProductListComponent implements OnInit {
     dateTimeNow:Date= new Date();
@@ -15,7 +17,7 @@ export class ProductListComponent implements OnInit {
     // imageWidth:number=100;
     // imageHeight:number=100;
 
-    constructor() {
+    constructor(private ls:LoggingService) {
         // let prod2:Product=new Product();
         // prod2.productId=11;
         // prod2.productName="Test";
@@ -131,6 +133,16 @@ export class ProductListComponent implements OnInit {
             "imageUrl": "https://www.harrodhorticultural.com/uploads/images/products/GGT-886_Sneeboer_Leaf_Rakes_1.jpg",
             "emailId": "test@test.com"
         })    
+    }
+    // ls:LoggingService= new LoggingService();
+    LogData(){
+        // let  ls:LoggingService= new LoggingService();
+        // ls.logData("Test Data");
+        
+        // this.ls.logData("Test Data");
+
+
+        this.ls.logData("from List component");
     }
 
 
