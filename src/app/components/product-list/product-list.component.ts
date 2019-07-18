@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { LoggingService } from '../../services/logging.service';
+import { ProductService } from 'src/app/services/product.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-product-list',
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css'],
-    // providers:[LoggingService]
+    // providers:[ProductService]
 })
 export class ProductListComponent implements OnInit {
     dateTimeNow:Date= new Date();
@@ -16,8 +18,13 @@ export class ProductListComponent implements OnInit {
     @ViewChild("filterParent") filterParent:ElementRef;
     // imageWidth:number=100;
     // imageHeight:number=100;
-
-    constructor(private ls:LoggingService) {
+    products:Product[];
+    constructor(
+        private ls:LoggingService,
+        private ps:ProductService,
+        private route:ActivatedRoute,
+        private router:Router
+        ) {
         // let prod2:Product=new Product();
         // prod2.productId=11;
         // prod2.productName="Test";
@@ -29,12 +36,15 @@ export class ProductListComponent implements OnInit {
         // prod2.price=25253.46;
         // prod2.productCode="GDN-0011452";
         // prod2.starRating=4;
-
-        let prod3=new Product(11,"Test Prod","GDN-00223",2542.52,4,"","test@outlook.com","19 March 2018",new Description("Test Description",2018));
-        this.products.push(prod3);
+        this.products= ps.getProducts();
+        // let prod3=new Product(11,"Test Prod","GDN-00223",2542.52,4,"","test@outlook.com","19 March 2018",new Description("Test Description",2018));
+        // this.products.push(prod3);
     }
-
+    someMessage:string;
     ngOnInit() {
+        this.ps.notifyParent.subscribe((data)=>{
+            this.someMessage=data;
+        });
     }
 
     getImageStyle() {
@@ -145,79 +155,10 @@ export class ProductListComponent implements OnInit {
         this.ls.logData("from List component");
     }
 
+    AddNewProduct(){
+        this.router.navigate(["new"],{relativeTo:this.route}); 
+    }
 
-    products: Product[] = [
-        {
-            "productId": 1,
-            "productName": "Leaf Rake",
-            "productCode": "GDN-0011",
-            "releaseDate": "March 19, 2016",
-            "description": {
-                'descText': "test",
-                "mfdYear": 2018
-            },
-            "price": 19.95485968596,
-            "starRating": 3,
-            "imageUrl": "https://www.harrodhorticultural.com/uploads/images/products/GGT-886_Sneeboer_Leaf_Rakes_1.jpg",
-            "emailId": "test@test.com"
-        },
-        {
-            "productId": 2,
-            "productName": "Garden Cart",
-            "productCode": "GDN-0023",
-            "releaseDate": "March 18, 2016",
-            "description": {
-                'descText': "15 gallon capacity rolling garden cart",
-                "mfdYear": 2013
-            },
-            "price": 0,
-            "starRating": 4,
-            "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png",
-            "emailId": "test@test.com"
-        },
-        {
-            "productId": 5,
-            "productName": "Hammer",
-            "productCode": "TBX-0048",
-            "releaseDate": "May 21, 2016",
-            "description": {
-                'descText': "Curved claw steel hammer",
-                "mfdYear": 2014
-            },
-            "price": 8.9,
-            "starRating": 6,
-            "imageUrl": "https://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png",
-            "emailId": "test@test.com"
-        },
-        {
-            "productId": 8,
-            "productName": "Saw",
-            "productCode": "TBX-0022",
-            "releaseDate": "May 15, 2016",
-            "description": {
-                'descText': "15-inch steel blade hand saw",
-                "mfdYear": 2017
-            },
-            "price": 11.55,
-            "starRating": 1,
-            "imageUrl": "https://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png",
-            "emailId": "test@test.com"
-        },
-        {
-            "productId": 10,
-            "productName": "Video Game Controller",
-            "productCode": "GMG-0042",
-            "releaseDate": "October 15, 2015",
-            "description": {
-                'descText': "Standard two-button video game controller",
-                "mfdYear": 2017
-            },
-            "price": 35.95,
-            "starRating": 5,
-            "imageUrl": "https://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png",
-            "emailId": "test@test.com"
-        }
-    ];
 
 }
 

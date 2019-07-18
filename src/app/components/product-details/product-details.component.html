@@ -1,0 +1,47 @@
+<div class="card bg-light">
+  <div class="card-title">
+    <h3>{{product?.productName}}</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-3">Product Code</div>
+      <div class="col-md-5">{{product?.productCode}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Release Date</div>
+      <div class="col-md-5">{{product?.releaseDate}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Description</div>
+      <div class="col-md-5">{{product?.description?.descText}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Mfd Year</div>
+      <div class="col-md-5">{{product?.description?.mfdYear}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Price</div>
+      <div class="col-md-5">{{product?.price}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Rating</div>
+      <div class="col-md-5">{{product?.starRating}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Image</div>
+      <div class="col-md-5">
+        <img width="75px" height="75px" [src]="product?.imageUrl" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Email Id</div>
+      <div class="col-md-5">{{product?.EmailId}}</div>
+    </div>
+
+    <button class="btn btn-primary" style="margin-right: 5px" (click)="Redirect()">Redirect to Home</button>
+    <button class="btn btn-primary" (click)="LoadNewProduct()" style="margin-right: 5px">Load New Product</button>
+    <button class="btn btn-info" (click)="AddNewProduct()" style="margin-right: 5px">Add New Product</button>
+    <button class="btn btn-info" (click)="EditProduct()" style="margin-right: 5px">Edit</button>
+    <button class="btn btn-info" (click)="LoadWrongProduct()" style="margin-right: 5px">Load Wrong Product</button>
+  </div>
+</div>
