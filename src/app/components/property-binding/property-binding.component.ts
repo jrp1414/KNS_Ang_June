@@ -14,6 +14,7 @@ export class PropertyBindingComponent implements OnInit {
     //let tempthis = this; 
     setTimeout(()=>{
       this.hideError = !this.hideError;
+      
     }, 5000);
   }
   ngOnInit() {
