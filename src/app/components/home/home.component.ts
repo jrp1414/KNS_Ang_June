@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { Observable, Observer, Subscription, Subject } from "rxjs";
-import "rxjs/Rx";
+// import "rxjs/Rx";
 
 @Component({
   selector: 'app-home',
@@ -126,7 +126,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     //this.numberSubs.unsubscribe();
-    this.subjectSubscription.unsubscribe();
+    // this.subjectSubscription.unsubscribe();
   }
 
 }
