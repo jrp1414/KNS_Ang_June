@@ -17,11 +17,13 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { ProductGuardService } from './services/product-guard.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { TdfExComponent } from './components/tdf-ex/tdf-ex.component';
+import { SignUpComponent } from './components/users/sign-up/sign-up.component';
 
 // const routes:Route[]=[];
 const routes:Routes=[
   {path:"home",component:HomeComponent},
   {path:"tdf",component:TdfExComponent},
+  {path:"signup",component:SignUpComponent},
   {path:"products",component:c.ProductListComponent,canActivateChild:[AuthGuardService] ,children:[
     {path:"new",component:AddProductComponent},  //products/new
     {path:":id",component:ProductDetailsComponent,canActivate:[ProductGuardService]}, // /proudcts/2344
@@ -58,7 +60,8 @@ const routes:Routes=[
     ProductDetailsComponent,
     AddProductComponent,
     EditProductComponent,
-    TdfExComponent
+    TdfExComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
