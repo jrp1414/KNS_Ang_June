@@ -1,0 +1,21 @@
+<div class="panel">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-2">
+        <ul class="list-group">
+
+          <li class="list-group-item" style="margin-top: 10px; margin-bottom: 10px;">
+            <button class="btn btn-default" [routerLink]="'new'">Add New Student</button>
+          </li>
+
+          <li *ngFor="let student of students" class="list-group-item">
+            <a [routerLink]="student.StudentId">{{student.FirstName + " "+student.LastName}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-10">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

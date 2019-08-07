@@ -12,6 +12,7 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
   }
 
+  passwordPattern=new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{4,})");
 
   OnSignUp(data){
     console.log(data);

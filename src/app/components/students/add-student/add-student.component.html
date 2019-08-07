@@ -1,0 +1,71 @@
+<div class="container">
+  <form (ngSubmit)="OnStudentAdded()" [formGroup]="studentForm">
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="FirstName">First Name</label>
+          <input type="text" id="FirstName" class="form-control" formControlName="FirstName" placeholder="First Name">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="LastName">Last Name</label>
+          <input type="text" id="LastName" class="form-control" formControlName="LastName" placeholder="Last Name">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="MobileNo">Mobile No</label>
+          <input type="text" id="MobileNo" class="form-control" formControlName="MobileNo" placeholder="Mobile No">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="EmailId">Email Id</label>
+          <input type="email" id="EmailId" class="form-control" formControlName="EmailId" placeholder="Email Id">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="AddLine1">Address Line 1</label>
+          <input type="text" id="AddLine1" class="form-control" formControlName="AddLine1" placeholder="Address Line 1">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="AddLine2">Address Line 2</label>
+          <input type="text" id="AddLine2" class="form-control" formControlName="AddLine2" placeholder="Address Line 2">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="AddLine3">Address Line 3</label>
+          <input type="text" id="AddLine3" class="form-control" formControlName="AddLine3" placeholder="Address Line 3">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="City">City</label>
+          <input type="text" id="City" class="form-control" formControlName="City" placeholder="City">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="State">State</label>
+          <input type="text" id="State" class="form-control" formControlName="State" placeholder="State">
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
