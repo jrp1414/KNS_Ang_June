@@ -14,18 +14,21 @@ export class AddStudentComponent implements OnInit {
     this.studentForm= new FormGroup({
       FirstName:new FormControl(""),
       LastName:new FormControl(""),
+      NotificationType:new FormControl("email"),
       MobileNo:new FormControl(""),
       EmailId:new FormControl(""),
       AddLine1:new FormControl(""),
       AddLine2:new FormControl(""),
       AddLine3:new FormControl(""),
       City:new FormControl(""),
-      State:new FormControl("")
+      State:new FormControl(""),
+      TermsAndConditions:new FormControl(),
+      Subjects:new FormControl()
     });
   }
 
   OnStudentAdded(){
-    console.log(this.studentForm);
+    console.log(this.studentForm.value);
   }
 
 }

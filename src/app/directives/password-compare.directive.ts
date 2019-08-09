@@ -1,46 +1,53 @@
+
 import { Directive, Input } from '@angular/core';
-import { Validator, AbstractControl, ValidationErrors, FormGroup, FormControl } from '@angular/forms';
+import { NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Directive({
-  selector: '[passwordCompare]',
-  providers:[{provide:"NG_VALIDATORS",useExisting:PasswordCompareDirective,multi:true}]
+  selector: '[compare]',
+  providers: [{
+    provide: NG_VALIDATORS,
+    useExisting: CompareDirective,
+    multi: true
+  }]
 })
-export class PasswordCompareDirective implements Validator {
+export class CompareDirective implements Validator {
 
-  //@Input("passwordCompare") passwordCompare:string[]=[];
+  @Input("compare") OtherControlName: string;
 
-  validate(formGroup:FormGroup): ValidationErrors {
-    //Write Logic to fetch the values of both the fields and compare..
-    return ComparePassword("Password","ConfirmPassword")(formGroup);
+  validate(control: AbstractControl): ValidationErrors {
+    let OtherControl = control.parent.get(this.OtherControlName);
+
+    if (control.value !== OtherControl.value) {
+      return { match: true };
+    }
+    return null;
   }
 
   constructor() { }
-
 }
 
 
-function ComparePassword(Password:string,ConfirmPassword:string) {
- return (formGroup:FormGroup)=>{
-  //Get User entered password
-  let pwd= <FormControl>formGroup.controls[Password];
-  let cnfPwd= <FormControl>formGroup.controls[ConfirmPassword];
+// Interface Examples
 
-  //return null if controls have not been initialized yet
-  if(!pwd || !cnfPwd){
-    return null;
-  }
+// export class ClassName implements IStudents {
+//   samplePropMandatory: string;
+//   samplePropOptional?: string;
 
-  // return null if any other validation error is already found and not yet fixed
-  if(cnfPwd.errors && !cnfPwd.errors.compare){
-    return null;
-  }
+//   SampleMethodMandatory() {
+//     throw new Error("Method not implemented.");
+//   }
+//   SampleMethodOptional?() {
+//     throw new Error("Method not implemented.");
+//   }
 
-  //set error if both the fields are not matching
-  if(pwd.value!== cnfPwd.value){
-    cnfPwd.setErrors({"compare":true});
-  }else{
-    cnfPwd.setErrors(null);
-  }
- }; 
-  
-}
+// }
+
+// export interface IStudents {
+//   samplePropMandatory: string;
+//   samplePropOptional?: string;
+//   SampleMethodMandatory();
+//   SampleMethodOptional?();
+// }
+
+
+

@@ -18,7 +18,7 @@ import { ProductGuardService } from './services/product-guard.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { TdfExComponent } from './components/tdf-ex/tdf-ex.component';
 import { SignUpComponent } from './components/users/sign-up/sign-up.component';
-import { PasswordCompareDirective } from './directives/password-compare.directive';
+import { CompareDirective } from './directives/password-compare.directive';
 import { StudentsComponent } from './components/students/students.component';
 import { AddStudentComponent } from './components/students/add-student/add-student.component';
 
@@ -73,7 +73,7 @@ const routes: Routes = [
     EditProductComponent,
     TdfExComponent,
     SignUpComponent,
-    PasswordCompareDirective,
+    CompareDirective,
     StudentsComponent,
     AddStudentComponent
   ],

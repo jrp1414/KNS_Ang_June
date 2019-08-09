@@ -1,116 +1,168 @@
 <div class="container">
   <form (ngSubmit)="OnSignUp(f)" #f="ngForm">
-    <div class="form-group">
-      <label for="FirstName">First Name</label>
-      <input type="text" name="FirstName" ngModel #FirstName="ngModel" maxlength="20" required id="FirstName"
-        class="form-control" placeholder="First Name" aria-describedby="helpId">
-      <small *ngIf="FirstName.touched && FirstName.errors?.required" class="text-muted">
-        <span>First Name is Mandatory</span>
-      </small>
-      <!-- <small *ngIf="FirstName.touched && FirstName.errors.maxlength" class="text-muted">
-        <span>First Name should be maximum of 20 characters</span>
-      </small> -->
-    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="FirstName">First Name</label>
+          <input type="text" name="FirstName" ngModel #FirstName="ngModel" maxlength="20" required id="FirstName"
+            class="form-control" placeholder="First Name" aria-describedby="helpId">
+          <small *ngIf="FirstName.touched && FirstName.errors?.required" class="text-muted">
+            <span>First Name is Mandatory</span>
+          </small>
+          <!-- <small *ngIf="FirstName.touched && FirstName.errors.maxlength" class="text-muted">
+                <span>First Name should be maximum of 20 characters</span>
+              </small> -->
+        </div>
 
-    <div class="form-group">
-      <label for="LastName">Last Name</label>
-      <input type="text" name="LastName" ngModel #LastName="ngModel" required id="LastName" class="form-control"
-        placeholder="Last Name" aria-describedby="helpId">
-      <small id="helpId" class="text-muted"><span *ngIf="LastName.invalid && LastName.touched">Last Name is
-          Mandatory</span></small>
-    </div>
 
-    <div class="form-group">
-      <label for="MobileNo">Mobile No</label>
-      <input type="text" class="form-control" name="MobileNo" ngModel required id="MobileNo" aria-describedby="helpId"
-        placeholder="Mobile No">
-      <small id="helpId" class="form-text text-muted">Enter Mobile No</small>
-    </div>
-
-    <div class="form-group">
-      <label for="EmailId">Email Id</label>
-      <input type="email" class="form-control" name="EmailId" #EmailId="ngModel" ngModel id="EmailId" required email
-        aria-describedby="emailHelpId" placeholder="Email Id">
-      <small id="emailHelpId" *ngIf="EmailId.touched && EmailId.errors?.required" class="form-text text-muted">Enter
-        Email Id</small>
-      <small id="emailHelpId" *ngIf="EmailId.touched && EmailId.errors?.email" class="form-text text-muted">Invalid
-        Email
-        Id</small>
-    </div>
-
-    <div ngModelGroup="Passwords" #Passwords="ngModelGroup" passwordCompare>
-      <div class="form-group">
-        <label for="Password">Password</label>
-        <input type="password" class="form-control" name="Password" [pattern]="passwordPattern" required ngModel
-          #Password="ngModel" id="Password" placeholder="Password">
-        <small id="PasswordHelpId" *ngIf="Password.touched && Password.errors?.pattern" class="form-text text-muted">
-          Password must be of 4 Characters including an uppercase,lowercase,number and special character
-        </small>
       </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="LastName">Last Name</label>
+          <input type="text" name="LastName" ngModel #LastName="ngModel" required id="LastName" class="form-control"
+            placeholder="Last Name" aria-describedby="helpId">
+          <small id="helpId" class="text-muted"><span *ngIf="LastName.invalid && LastName.touched">Last Name is
+              Mandatory</span></small>
+        </div>
+      </div>
+    </div>
 
-      <div class="form-group">
-        <label for="ConfirmPassword">Confirm Password</label>
-        <input type="password" class="form-control" name="ConfirmPassword" #ConfirmPassword="ngModel" required ngModel id="ConfirmPassword"
-          placeholder="Confirm Password">
-        <small id="ConfirmPasswordHelpId" *ngIf="ConfirmPassword.touched && ConfirmPassword.errors?.required" class="form-text text-muted">
-          Confirm Password is Mandatory
-        </small>
-        <small id="ConfirmPasswordHelpId" *ngIf="ConfirmPassword.touched && ConfirmPassword.errors?.compare" class="form-text text-muted">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="MobileNo">Mobile No</label>
+          <input type="text" class="form-control" name="MobileNo" ngModel required id="MobileNo"
+            aria-describedby="helpId" placeholder="Mobile No">
+          <small id="helpId" class="form-text text-muted">Enter Mobile No</small>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="EmailId">Email Id</label>
+          <input type="email" class="form-control" name="EmailId" #EmailId="ngModel" ngModel id="EmailId" required email
+            aria-describedby="emailHelpId" placeholder="Email Id">
+          <small id="emailHelpId" *ngIf="EmailId.touched && EmailId.errors?.required" class="form-text text-muted">Enter
+            Email Id</small>
+          <small id="emailHelpId" *ngIf="EmailId.touched && EmailId.errors?.email" class="form-text text-muted">Invalid
+            Email
+            Id</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="Password">Password</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            name="Password" 
+            [pattern]="passwordPattern" 
+            required ngModel
+            #Password="ngModel"
+            (input)="ConfirmPassword.control.updateValueAndValidity()" 
+            id="Password" 
+            placeholder="Password"
+            [class.is-invalid]="(ConfirmPassword.errors?.match ||Password.errors?.required) && Password.touched"
+            >
+          <small id="PasswordHelpId" *ngIf="Password.touched && Password.errors?.pattern" class="form-text text-muted">
+            Password must be of 4 Characters including an uppercase,lowercase,number and special character
+          </small>
+          <small id="PasswordHelpId" *ngIf="ConfirmPassword.touched && ConfirmPassword.errors?.match"
+            class="form-text text-muted">
             Both Passwords Not matching
           </small>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="ConfirmPassword">Confirm Password</label>
+          <input 
+              type="text" 
+              class="form-control" 
+              name="ConfirmPassword" 
+              compare="Password" 
+              #ConfirmPassword="ngModel" 
+              required ngModel
+              id="ConfirmPassword" 
+              placeholder="Confirm Password" 
+              [class.is-invalid]="(ConfirmPassword.errors?.match ||ConfirmPassword.errors?.required) && ConfirmPassword.touched">
+          <small id="ConfirmPasswordHelpId" *ngIf="ConfirmPassword.touched && ConfirmPassword.errors?.required"
+            class="form-text text-muted">
+            Confirm Password is Mandatory
+          </small>
+          <small id="ConfirmPasswordHelpId" *ngIf="ConfirmPassword.touched && ConfirmPassword.errors?.match"
+            class="form-text text-muted">
+            Both Passwords Not matching
+          </small>
+        </div>
       </div>
     </div>
-
-    <!-- <div class="form-group">
-      <label for="Address">Address</label>
-      <textarea class="form-control" name="Address" ngModel required id="Address" rows="3"></textarea>
-    </div> -->
-
     <div ngModelGroup="Address">
-      <div class="form-group">
-        <label for="AddLine1">Address Line 1</label>
-        <input type="text" name="AddLine1" ngModel #AddLine1="ngModel" id="AddLine1" class="form-control"
-          placeholder="Address Line 1">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="AddLine1">Address Line 1</label>
+            <input type="text" name="AddLine1" ngModel #AddLine1="ngModel" id="AddLine1" class="form-control"
+              placeholder="Address Line 1">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="AddLine2">Address Line 2</label>
+            <input type="text" name="AddLine2" ngModel #AddLine2="ngModel" id="AddLine2" class="form-control"
+              placeholder="Address Line 2">
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="AddLine2">Address Line 2</label>
-        <input type="text" name="AddLine2" ngModel #AddLine2="ngModel" id="AddLine2" class="form-control"
-          placeholder="Address Line 2">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="AddLine3">Address Line 3</label>
+            <input type="text" name="AddLine3" ngModel #AddLine3="ngModel" id="AddLine3" class="form-control"
+              placeholder="Address Line 3">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="City">City</label>
+            <select class="form-control" name="City" ngModel required id="City">
+              <option>Pune</option>
+              <option>Mumbai</option>
+              <option>Chennai</option>
+              <option>Delhi</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="AddLine3">Address Line 3</label>
-        <input type="text" name="AddLine3" ngModel #AddLine3="ngModel" id="AddLine3" class="form-control"
-          placeholder="Address Line 3">
-      </div>
+    </div>
 
-      <div class="form-group">
-        <label for="City">City</label>
-        <select class="form-control" name="City" ngModel required id="City">
-          <option>Pune</option>
-          <option>Mumbai</option>
-          <option>Chennai</option>
-          <option>Delhi</option>
-        </select>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">Gender &nbsp;&nbsp;&nbsp;</label>
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="Gender" ngModel id="Gender" value="Male"> Male
+          </label>
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="Gender" ngModel id="Gender" value="Female"> Female
+          </label>
+        </div>
+
+
+      </div>
+      <div class="col-md-6">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" name="TermsAndConditions" ngModel id="TermsAndConditions">
+            Terms and Conditions
+          </label>
+        </div>
       </div>
     </div>
 
 
-    <div class="form-check form-check-inline">
-      <label class="form-check-label">Gender &nbsp;&nbsp;&nbsp;</label>
-      <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="Gender" ngModel id="Gender" value="Male"> Male
-      </label>
-      <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="Gender" ngModel id="Gender" value="Female"> Female
-      </label>
-    </div>
-
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" name="TermsAndConditions" ngModel id="TermsAndConditions">
-        Terms and Conditions
-      </label>
-    </div>
 
     <!-- <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Submit</button> -->
     <button type="submit" class="btn btn-primary">Submit</button>
