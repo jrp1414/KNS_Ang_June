@@ -5,13 +5,20 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="FirstName">First Name</label>
-          <input type="text" id="FirstName" class="form-control" formControlName="FirstName" placeholder="First Name">
+          <input type="text" id="FirstName"
+            [class.is-invalid]="studentForm.get('FirstName').errors?.required && studentForm.get('FirstName').touched"
+            class="form-control" formControlName="FirstName" placeholder="First Name">
+          <small *ngIf="studentForm.get('FirstName').errors?.required && studentForm.get('FirstName').touched"
+            class="text-muted">First Name is Mandatory</small>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="LastName">Last Name</label>
-          <input type="text" id="LastName" class="form-control" formControlName="LastName" placeholder="Last Name">
+          <input type="text" id="LastName" class="form-control" formControlName="LastName" placeholder="Last Name"
+            [class.is-invalid]="studentForm.get('LastName').errors?.required && studentForm.get('LastName').touched">
+          <small *ngIf="studentForm.get('LastName').errors?.required && studentForm.get('LastName').touched"
+            class="text-muted">Last Name is Mandatory</small>
         </div>
       </div>
     </div>
@@ -20,14 +27,14 @@
         <label style="margin-right: 10px; font-weight: bold">Notification Type</label>
         <div class="form-check form-check-inline">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" formControlName="NotificationType" name="NotificationType"
-              value="email"> Email
+            <input class="form-check-input" type="radio" formControlName="NotificationType"
+              (click)="OnNotificationChange('email')" name="NotificationType" value="email"> Email
           </label>
         </div>
         <div class="form-check form-check-inline">
           <label class="form-check-label">
             <input class="form-check-input" type="radio" name="NotificationType" formControlName="NotificationType"
-              value="mobile"> Mobile
+              (click)="OnNotificationChange('mobile')" value="mobile"> Mobile
           </label>
         </div>
       </div>
@@ -35,64 +42,26 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="MobileNo">Mobile No</label>
-          <input type="text" id="MobileNo" class="form-control" formControlName="MobileNo" placeholder="Mobile No">
+          <label for="EmailId">Email Id</label>
+          <input type="email" id="EmailId" class="form-control" formControlName="EmailId" placeholder="Email Id"
+            [class.is-invalid]="(studentForm.get('EmailId').errors?.required || studentForm.get('EmailId').errors?.email) && studentForm.get('EmailId').touched">
+          <small *ngIf="studentForm.get('EmailId').errors?.required && studentForm.get('EmailId').touched"
+            class="text-muted">Email Id is Mandatory</small>
+          <small *ngIf="studentForm.get('EmailId').errors?.email && studentForm.get('EmailId').touched"
+            class="text-muted">Invalid Email Id</small>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="EmailId">Email Id</label>
-          <input type="email" id="EmailId" class="form-control" formControlName="EmailId" placeholder="Email Id">
+          <label for="MobileNo">Mobile No</label>
+          <input type="text" id="MobileNo" class="form-control" formControlName="MobileNo"
+            [class.is-invalid]="studentForm.get('MobileNo').errors?.required && studentForm.get('MobileNo').touched"
+            placeholder="Mobile No">
+          <small *ngIf="studentForm.get('MobileNo').errors?.required && studentForm.get('MobileNo').touched"
+            class="text-muted">Mobile No is Mandatory</small>
         </div>
       </div>
     </div>
-    <div [formGroupName]="Address">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="AddLine1">Address Line 1</label>
-            <input type="text" id="AddLine1" class="form-control" formControlName="AddLine1" placeholder="Address Line 1">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="AddLine2">Address Line 2</label>
-            <input type="text" id="AddLine2" class="form-control" formControlName="AddLine2" placeholder="Address Line 2">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="AddLine3">Address Line 3</label>
-            <input type="text" id="AddLine3" class="form-control" formControlName="AddLine3" placeholder="Address Line 3">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <div class="form-group">
-              <label for="City">City</label>
-              <select class="form-control" name="City" id="City" formControlName="City">
-                <option>Pune</option>
-                <option>Mumbai</option>
-                <option>Chennai</option>
-                <option>Bangalore</option>
-              </select>
-            </div>
-          </div>
-        </div>
-  
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="State">State</label>
-            <input type="text" id="State" class="form-control" formControlName="State" placeholder="State">
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -115,6 +84,76 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        Hobbies:
+      </div>
+      <div class="col-md-3">
+        <button (click)="AddNewHobby()" type="button" class="btn btn-info">Add Hobby</button>
+      </div>
+      <div formArrayName="hobbies" class="col-md-4">
+        <div class="form-group" *ngFor="let hobby of studentForm.get('hobbies').controls;let i=index">
+          <input type="text" class="form-control" [formControlName]="i" placeholder="Enter Hobby">
+        </div>
+      </div>
+    </div>
+
+    <div formArrayName="addresses">
+      <button type="button" class="btn btn-primary" (click)="AddNewAddress()">Add Address</button>
+      <div style="margin-top: 10px; scroll-margin-bottom: 10px;"
+        *ngFor="let addr of studentForm.get('addresses').controls;let i=index" class="card text-white bg-secondary"
+        [formGroupName]="i">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="AddLine1">Address Line 1</label>
+              <input type="text" id="AddLine1" class="form-control" formControlName="AddLine1"
+                placeholder="Address Line 1">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="AddLine2">Address Line 2</label>
+              <input type="text" id="AddLine2" class="form-control" formControlName="AddLine2"
+                placeholder="Address Line 2">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="AddLine3">Address Line 3</label>
+              <input type="text" id="AddLine3" class="form-control" formControlName="AddLine3"
+                placeholder="Address Line 3">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="form-group">
+                <label for="City">City</label>
+                <select class="form-control" name="City" id="City" formControlName="City">
+                  <option>Pune</option>
+                  <option>Mumbai</option>
+                  <option>Chennai</option>
+                  <option>Bangalore</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="State">State</label>
+              <input type="text" id="State" class="form-control" formControlName="State" placeholder="State">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
