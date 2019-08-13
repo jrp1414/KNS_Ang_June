@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-add-student',
@@ -8,30 +8,29 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 })
 export class AddStudentComponent implements OnInit {
   studentForm: FormGroup;
-  hobbies:FormArray= new FormArray([new FormControl()]);
-  addresses:FormArray = new FormArray([
-    new FormGroup({
-      AddLine1: new FormControl(""),
-      AddLine2: new FormControl(""),
-      AddLine3: new FormControl(""),
-      City: new FormControl(""),
-      State: new FormControl("")
+  hobbies: FormArray = this.fb.array([this.fb.control("")]);
+  addresses: FormArray = this.fb.array([
+    this.fb.group({
+      AddLine1: "",
+      AddLine2: "",
+      AddLine3: "",
+      City: "",
+      State: ""
     })
   ]);
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.studentForm = new FormGroup({
-      FirstName: new FormControl("",Validators.required),
-      LastName: new FormControl("",Validators.required),
-      NotificationType: new FormControl("email"),
-      MobileNo: new FormControl(""),
-      EmailId: new FormControl("",[Validators.required,Validators.email]),
-      Addresses: this.addresses,
-      TermsAndConditions: new FormControl(),
-      Subjects: new FormControl(),
-      hobbies:this.hobbies,
-      addresses:this.addresses
+    this.studentForm = this.fb.group({
+      FirstName: ["",Validators.required],
+      LastName: ["", Validators.required],
+      NotificationType: "email",
+      MobileNo: "",
+      EmailId: ["", [Validators.required, Validators.email]],
+      TermsAndConditions: true,
+      Subjects: "",
+      hobbies: this.hobbies,
+      addresses: this.addresses
     });
   }
 
@@ -39,27 +38,27 @@ export class AddStudentComponent implements OnInit {
     console.log(this.studentForm.value);
   }
 
-  AddNewHobby(){
-    this.hobbies.push(new FormControl(""));
+  AddNewHobby() {
+    this.hobbies.push(this.fb.control(""));
   }
 
-  OnNotificationChange(notificationType:string){
+  SetNotificationValidation(notificationType: string) {
     let mobileNo = this.studentForm.get("MobileNo");
-    if(notificationType==='mobile'){      
+    if (notificationType === 'mobile') {
       mobileNo.setValidators(Validators.required);
-    }else{
+    } else {
       mobileNo.clearValidators();
     }
-    mobileNo.updateValueAndValidity(); 
+    mobileNo.updateValueAndValidity();
   }
 
-  AddNewAddress(){
-    this.addresses.push(new FormGroup({
-      AddLine1: new FormControl(""),
-      AddLine2: new FormControl(""),
-      AddLine3: new FormControl(""),
-      City: new FormControl(""),
-      State: new FormControl("")
+  AddNewAddress() {
+    this.addresses.push(this.fb.group({
+      AddLine1: "",
+      AddLine2: "",
+      AddLine3: "",
+      City: "",
+      State: ""
     }));
   }
 
