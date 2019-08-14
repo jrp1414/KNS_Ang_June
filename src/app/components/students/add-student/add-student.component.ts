@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators, FormBuilder, AbstractControl, ValidatorFn } from '@angular/forms';
+import { RangeValidator } from "../../../shared/RangeValidator";
+import { Match } from 'src/app/shared/MatchValidator'
 
 @Component({
   selector: 'app-add-student',
@@ -22,15 +24,24 @@ export class AddStudentComponent implements OnInit {
 
   ngOnInit() {
     this.studentForm = this.fb.group({
-      FirstName: ["",Validators.required],
+      FirstName: ["", Validators.required],
       LastName: ["", Validators.required],
       NotificationType: "email",
       MobileNo: "",
-      EmailId: ["", [Validators.required, Validators.email]],
+      Email: this.fb.group({
+        EmailId: ["", [Validators.required, Validators.email]],
+        ConfirmEmailId: ["", [Validators.required, Validators.email]]
+      },{validator:Match("EmailId","ConfirmEmailId")}),
       TermsAndConditions: true,
       Subjects: "",
+      // Age:[0,RangeValidator],
+      Age: [0, RangeValidator(8, 18)],
       hobbies: this.hobbies,
       addresses: this.addresses
+    });
+
+    this.studentForm.get("NotificationType").valueChanges.subscribe((val) => {
+      this.SetNotificationValidation(val);
     });
   }
 

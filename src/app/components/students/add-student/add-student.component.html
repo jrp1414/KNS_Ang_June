@@ -6,7 +6,7 @@
         <div class="form-group">
           <label for="FirstName">First Name</label>
           <input type="text" id="FirstName"
-            [class.is-invalid]="studentForm.get('FirstName').errors?.required && studentForm.get('FirstName').touched"
+            [class.is-invalid]="studentForm.get('FirstName').errors && studentForm.get('FirstName').touched"
             class="form-control" formControlName="FirstName" placeholder="First Name">
           <small *ngIf="studentForm.get('FirstName').errors?.required && studentForm.get('FirstName').touched"
             class="text-muted">First Name is Mandatory</small>
@@ -16,7 +16,7 @@
         <div class="form-group">
           <label for="LastName">Last Name</label>
           <input type="text" id="LastName" class="form-control" formControlName="LastName" placeholder="Last Name"
-            [class.is-invalid]="studentForm.get('LastName').errors?.required && studentForm.get('LastName').touched">
+            [class.is-invalid]="studentForm.get('LastName').errors && studentForm.get('LastName').touched">
           <small *ngIf="studentForm.get('LastName').errors?.required && studentForm.get('LastName').touched"
             class="text-muted">Last Name is Mandatory</small>
         </div>
@@ -27,38 +27,72 @@
         <label style="margin-right: 10px; font-weight: bold">Notification Type</label>
         <div class="form-check form-check-inline">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" formControlName="NotificationType"
-              (click)="OnNotificationChange('email')" name="NotificationType" value="email"> Email
+            <input class="form-check-input" type="radio" formControlName="NotificationType" name="NotificationType"
+              value="email"> Email
           </label>
         </div>
         <div class="form-check form-check-inline">
           <label class="form-check-label">
             <input class="form-check-input" type="radio" name="NotificationType" formControlName="NotificationType"
-              (click)="SetNotificationValidation('mobile')" value="mobile"> Mobile
+              value="mobile"> Mobile
           </label>
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" formGroupName="Email">
       <div class="col-md-6">
         <div class="form-group">
           <label for="EmailId">Email Id</label>
           <input type="email" id="EmailId" class="form-control" formControlName="EmailId" placeholder="Email Id"
-            [class.is-invalid]="(studentForm.get('EmailId').errors?.required || studentForm.get('EmailId').errors?.email) && studentForm.get('EmailId').touched">
-          <small *ngIf="studentForm.get('EmailId').errors?.required && studentForm.get('EmailId').touched"
+            [class.is-invalid]="(studentForm.get('Email.EmailId').errors && studentForm.get('Email.EmailId').touched) 
+            || studentForm.get('Email').errors?.match">
+          <small *ngIf="studentForm.get('Email.EmailId').errors?.required && studentForm.get('Email.EmailId').touched"
             class="text-muted">Email Id is Mandatory</small>
-          <small *ngIf="studentForm.get('EmailId').errors?.email && studentForm.get('EmailId').touched"
+          <small *ngIf="studentForm.get('Email.EmailId').errors?.email && studentForm.get('Email.EmailId').touched"
             class="text-muted">Invalid Email Id</small>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
+          <label for="ConfirmEmailId">Confirm Email Id</label>
+          <input type="email" id="ConfirmEmailId" class="form-control" formControlName="ConfirmEmailId"
+            placeholder="Confirm Email Id" [class.is-invalid]="
+            (studentForm.get('Email.ConfirmEmailId').errors 
+          && studentForm.controls.Email.controls.ConfirmEmailId.touched) ||
+          studentForm.get('Email').errors?.match
+          ">
+          <small
+            *ngIf="studentForm.get('Email.ConfirmEmailId').errors?.required && studentForm.get('Email.ConfirmEmailId').touched"
+            class="text-muted">Confirm Email Id is Mandatory</small>
+          <small
+            *ngIf="studentForm.get('Email.ConfirmEmailId').errors?.email && studentForm.get('Email.ConfirmEmailId').touched"
+            class="text-muted">Invalid Email Id</small>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <!-- <small *ngIf="studentForm.get('Email').errors?.match" class="text-muted">Both Emails Not Matching</small> -->
+        <small *ngIf="studentForm.controls.Email.errors?.match" class="text-muted">Both Emails Not Matching</small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
           <label for="MobileNo">Mobile No</label>
           <input type="text" id="MobileNo" class="form-control" formControlName="MobileNo"
-            [class.is-invalid]="studentForm.get('MobileNo').errors?.required && studentForm.get('MobileNo').touched"
+            [class.is-invalid]="studentForm.get('MobileNo').errors && studentForm.get('MobileNo').touched"
             placeholder="Mobile No">
           <small *ngIf="studentForm.get('MobileNo').errors?.required && studentForm.get('MobileNo').touched"
             class="text-muted">Mobile No is Mandatory</small>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="Age">Age</label>
+          <input type="number" id="Age" class="form-control" formControlName="Age"
+            [class.is-invalid]="studentForm.get('Age').errors && studentForm.get('Age').touched"
+            placeholder="Age">
+          <small *ngIf="studentForm.get('Age').errors?.range && studentForm.get('Age').touched" class="text-muted">Age
+            Should be between 8 and 18</small>
         </div>
       </div>
     </div>
