@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder, AbstractControl, ValidatorFn } from '@angular/forms';
 import { RangeValidator } from "../../../shared/RangeValidator";
 import { Match } from 'src/app/shared/MatchValidator'
+import { StudentService } from '../student.service';
+import { Student } from '../Student';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-student',
@@ -20,33 +23,34 @@ export class AddStudentComponent implements OnInit {
       State: ""
     })
   ]);
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private ss:StudentService,
+              private router:Router,
+              private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.studentForm = this.fb.group({
-      FirstName: ["", Validators.required],
-      LastName: ["", Validators.required],
-      NotificationType: "email",
-      MobileNo: "",
-      Email: this.fb.group({
-        EmailId: ["", [Validators.required, Validators.email]],
-        ConfirmEmailId: ["", [Validators.required, Validators.email]]
-      },{validator:Match("EmailId","ConfirmEmailId")}),
-      TermsAndConditions: true,
-      Subjects: "",
-      // Age:[0,RangeValidator],
-      Age: [0, RangeValidator(8, 18)],
-      hobbies: this.hobbies,
-      addresses: this.addresses
-    });
-
-    this.studentForm.get("NotificationType").valueChanges.subscribe((val) => {
-      this.SetNotificationValidation(val);
-    });
+      "FirstName": "",
+      "LastName": "",
+      "MobileNo": "",
+      "EmailId": "",
+      "Address":this.fb.group({
+        "AddLine1": "",
+        "AddLine2": "",
+        "AddLine3": "",
+        "City": "",
+        "State": ""
+    })    
+  });
+    
   }
 
   OnStudentAdded() {
-    console.log(this.studentForm.value);
+    this.ss.AddStudent(this.studentForm.value).subscribe((data)=>{
+      this.ss.RefreshData.emit(<Student[]>data);
+
+      this.router.navigate(["students"],{relativeTo:this.route.root});
+    });
   }
 
   AddNewHobby() {

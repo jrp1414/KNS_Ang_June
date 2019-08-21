@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Route, Routes } from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
+
 
 import * as c from "./components/components.index";
 import { ShortenPipe, ConvertToPipe, FilterProductPipe } from "./pipes/pipes.index";
@@ -21,6 +23,9 @@ import { SignUpComponent } from './components/users/sign-up/sign-up.component';
 import { CompareDirective } from './directives/password-compare.directive';
 import { StudentsComponent } from './components/students/students.component';
 import { AddStudentComponent } from './components/students/add-student/add-student.component';
+import { StudentService } from './components/students/student.service';
+import { StudentDetailsComponent } from './components/students/student-details/student-details.component';
+import { EditStudentComponent } from './components/students/edit-student/edit-student.component';
 
 // const routes:Route[]=[];
 const routes: Routes = [
@@ -39,7 +44,9 @@ const routes: Routes = [
   },
   {
     path: "students", component: StudentsComponent, children: [
-      { path: "new", component: AddStudentComponent }
+      { path: "new", component: AddStudentComponent },
+      { path: ":id", component: StudentDetailsComponent },
+      { path: ":id/edit", component: EditStudentComponent }
     ]
   }
   // {path:"productdetails",component:c.ProductThumbnailComponent},
@@ -75,15 +82,18 @@ const routes: Routes = [
     SignUpComponent,
     CompareDirective,
     StudentsComponent,
-    AddStudentComponent
+    AddStudentComponent,
+    StudentDetailsComponent,
+    EditStudentComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
-  providers: [LoggingService],
+  providers: [LoggingService,StudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

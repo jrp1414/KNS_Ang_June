@@ -1,0 +1,79 @@
+<div class="card text-white bg-dark">
+  <img class="card-img-top" src="holder.js/100px180/" alt="">
+  <div class="card-body">
+    <h4 class="card-title">{{student?.FirstName +" "+student?.LastName}}</h4>
+
+    <div class="row">
+      <div class="col-md-4">
+        Mobile No
+      </div>
+      <div class="col-md-4">
+        {{student?.MobileNo}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        Email Id
+      </div>
+      <div class="col-md-4">
+        {{student?.EmailId}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        Address Line 1
+      </div>
+      <div class="col-md-4">
+        {{student?.Address.AddLine1}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        Address Line 2
+      </div>
+      <div class="col-md-4">
+        {{student?.Address.AddLine2}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        Address Line 3
+      </div>
+      <div class="col-md-4">
+        {{student?.Address.AddLine3}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        City
+      </div>
+      <div class="col-md-4">
+        {{student?.Address.City}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        State
+      </div>
+      <div class="col-md-4">
+        {{student?.Address.State}}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <button routerLink="edit" type="button" class="btn btn-primary">
+        Edit
+      </button>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-danger" (click)="OnStudentDelete()">Delete</button>
+    </div>
+  </div>
+
+</div>
