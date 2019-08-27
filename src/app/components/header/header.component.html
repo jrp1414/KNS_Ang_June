@@ -25,16 +25,18 @@
       
     </ul>
     <div class="form-inline my-2 my-lg-0">
-      <form (ngSubmit)="SignIn(f)" #f="ngForm">
-        <!-- <input class="form-control mr-sm-2" required type="text" placeholder="Email Id" aria-label="EmailId"
+      <form (ngSubmit)="SignIn(f.value)" #f="ngForm" *ngIf="!authenticated">
+        <input class="form-control mr-sm-2" required type="email" placeholder="Email Id" aria-label="EmailId"
           #EmailId="ngModel" ngModel name="EmailId">
         <input class="form-control mr-sm-2" required type="password" placeholder="Password" aria-label="Password"
           #Password="ngModel" ngModel name="Password">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" [disabled]="f.invalid">Sign
-          In</button> -->
+          In</button>
         <button [routerLink]="'/signup'" class="btn btn-outline-primary my-2 my-sm-0" [disabled]="isAuthenticated">Sign
           Up</button>
       </form>      
+      <button (click)="SignOut()" class="btn btn-outline-danger my-2 my-sm-0" *ngIf="authenticated">Sign
+        Out</button>
     </div>
   </div>
 </nav>

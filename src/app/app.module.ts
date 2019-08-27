@@ -30,10 +30,10 @@ import { EditStudentComponent } from './components/students/edit-student/edit-st
 // const routes:Route[]=[];
 const routes: Routes = [
   { path: "home", component: HomeComponent },
-  { path: "tdf", component: TdfExComponent },
+  { path: "tdf", component: TdfExComponent,canActivate:[AuthGuardService] },
   { path: "signup", component: SignUpComponent },
   {
-    path: "products", component: c.ProductListComponent, canActivateChild: [AuthGuardService], children: [
+    path: "products", component: c.ProductListComponent,canActivate:[AuthGuardService], canActivateChild: [AuthGuardService], children: [
       { path: "new", component: AddProductComponent },  //products/new
       { path: ":id", component: ProductDetailsComponent, canActivate: [ProductGuardService] }, // /proudcts/2344
       { path: ":id/edit", component: EditProductComponent } // /products/5/edit    
@@ -43,15 +43,15 @@ const routes: Routes = [
     ]
   },
   {
-    path: "students", component: StudentsComponent, children: [
+    path: "students", component: StudentsComponent,canActivate:[AuthGuardService], children: [
       { path: "new", component: AddStudentComponent },
       { path: ":id", component: StudentDetailsComponent },
       { path: ":id/edit", component: EditStudentComponent }
     ]
-  }
+  },
   // {path:"productdetails",component:c.ProductThumbnailComponent},
-  // {path:"",redirectTo:"home",pathMatch:"full"},
-  // {path:"**",redirectTo:"home"}
+  {path:"",redirectTo:"home",pathMatch:"full"},
+  {path:"**",redirectTo:"home"}
 
 ];
 
